@@ -1,7 +1,7 @@
 /**
  * Marine subclass. Implements Trackable and Relocatable.
  */
-public class Marine extends Animal implements Trackable, Relocatable {
+public class Marine extends Animal implements Trackable /*, Relocatable */ {
 
     private double maxDepthM;
     private int tankSizeLitres;
@@ -40,11 +40,25 @@ public class Marine extends Animal implements Trackable, Relocatable {
     }
 
     // --- Trackable methods ---
-    // TODO M4: Implement logSighting(String date, String location)
+    @Override
+    public void logSighting(String date, String location){
+        getSightings().add(date + " at "  + location);
+    }
 
-    // TODO M4: Implement getSightingCount()
 
-    // TODO M4: Implement getLastSighting()
+    @Override
+    public int getSightingCount() {
+        return getSightings().size();
+    }
+
+
+    @Override
+    public String getLastSighting(){
+        if(getSightings().isEmpty()){
+            return "No sightings recorded";
+        }
+        return getSightings().get(getSightings().size() - 1);
+    }
 
     // --- Relocatable methods ---
     // TODO M6: Implement canRelocateTo(String targetIsland)

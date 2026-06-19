@@ -2,7 +2,7 @@
  * Bird subclass. Implements Trackable and Relocatable.
  *
  */
-public class Bird extends Animal implements Trackable, Relocatable {
+public class Bird extends Animal implements Trackable/*, Relocatable */  {
 
     private double wingspanCm;
     private boolean canFly;
@@ -39,14 +39,25 @@ public class Bird extends Animal implements Trackable, Relocatable {
     }
 
     // --- Trackable methods ---
-    // TODO M4: Implement logSighting(String date, String location)
-    //          Appends "date at location" to the sightings list
+    @Override
+    public void logSighting(String date, String location){
+        getSightings().add(date + " at "  + location);
+    }
 
-    // TODO M4: Implement getSightingCount()
-    //          Returns the size of the sightings list
 
-    // TODO M4: Implement getLastSighting()
-    //          Returns the last entry, or "No sightings recorded" if empty
+    @Override
+    public int getSightingCount() {
+        return getSightings().size();
+    }
+
+
+    @Override
+    public String getLastSighting(){
+        if(getSightings().isEmpty()){
+            return "No sightings recorded";
+        }
+        return getSightings().get(getSightings().size() - 1);
+    }
 
     // --- Relocatable methods ---
     // TODO M6: Implement canRelocateTo(String targetIsland)
