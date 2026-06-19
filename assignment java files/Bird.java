@@ -1,10 +1,8 @@
 /**
  * Bird subclass. Implements Trackable and Relocatable.
  *
- * TODO M2: Make this class extend Animal
- * TODO M3: Make this class implement Trackable and Relocatable
  */
-public class Bird extends Animal /* TODO M3: implements Trackable, Relocatable */ {
+public class Bird extends Animal implements Trackable, Relocatable {
 
     private double wingspanCm;
     private boolean canFly;
@@ -34,7 +32,6 @@ public class Bird extends Animal /* TODO M3: implements Trackable, Relocatable *
 
     /**
      * Daily food cost = 15.0 + weightKg * 50.0
-     * TODO M2: Implement getDailyFoodCostTTD()
      */
     @Override
     public double getDailyFoodCostTTD() {

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Driver {
     public static void main(String[] args) {
 
-        System.out.println(new Bird("Scarlet Ibis", "Ruby", "Trinidad", 0.35, "Healthy", 60.0, true).toString());
+        //System.out.println(new Bird("Scarlet Ibis", "Ruby", "Trinidad", 0.35, "Healthy", 60.0, true).toString());
         // TODO M9: Create two sanctuaries:
         //   "Caroni Bird Sanctuary", Trinidad, capacity 20
         //   "Blue Lagoon Marine Park", Jamaica, capacity 15
