@@ -22,7 +22,6 @@ public abstract class Animal {
      * weightKg must be > 0.
      * healthStatus must be "Healthy", "Injured", or "Critical".
      *
-     * TODO M1: Implement constructor with validation
      * TODO M4: Initialize sightings list
      */
     public Animal(String species, String nickname, String island, double weightKg, String healthStatus) {
@@ -78,13 +77,15 @@ public abstract class Animal {
         return this.healthStatus;
     }
 
-    // TODO M2: Write setIsland(String island) method
+
+    public void setIsland(String island) {
+        this.island = island;
+    }
 
     // TODO M4: Write getSightings() getter that returns the ArrayList<String>
 
     /**
      * Updates the health status after validation.
-     * TODO M1: Implement updateHealth
      */
     public void updateHealth(String newStatus) {
         if(!newStatus.equals("Healthy") && !newStatus.equals("Injured") && !newStatus.equals("Critical")) {
@@ -95,13 +96,11 @@ public abstract class Animal {
 
     /**
      * Returns the animal type: "Bird", "Reptile", or "Marine".
-     * TODO M2: Declare as abstract
      */
     public abstract String getType();
 
     /**
      * Returns the daily food cost in TTD. Varies by subclass.
-     * TODO M2: Declare as abstract
      */
     public abstract double getDailyFoodCostTTD();
 
@@ -109,7 +108,6 @@ public abstract class Animal {
      * Format: "#%03d %s '%s' (%s) [%s] %.2f kg - %s"
      * Example: "#001 Scarlet Ibis 'Ruby' (Trinidad) [Bird] 0.35 kg - Healthy"
      *
-     * TODO M1: Implement toString
      */
     @Override
     public String toString() {
