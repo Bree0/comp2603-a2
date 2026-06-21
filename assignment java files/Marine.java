@@ -1,7 +1,7 @@
 /**
  * Marine subclass. Implements Trackable and Relocatable.
  */
-public class Marine extends Animal implements Trackable /*, Relocatable */ {
+public class Marine extends Animal implements Trackable , Relocatable  {
 
     private double maxDepthM;
     private int tankSizeLitres;
@@ -61,12 +61,21 @@ public class Marine extends Animal implements Trackable /*, Relocatable */ {
     }
 
     // --- Relocatable methods ---
-    // TODO M6: Implement canRelocateTo(String targetIsland)
-    //          Returns true only if targetIsland is NOT the animal's current island
+    @Override
+    public boolean canRelocateTo(String targetIsland){
+        return !targetIsland.equals(getIsland());
+    }
 
-    // TODO M6: Implement getRelocationCost()
-    //          Returns 2000.0 + tankSizeLitres * 5.0
+
+    @Override
+    public double getRelocationCost(){
+        return 2000.0 + tankSizeLitres * 5.0;
+    }
 
     // TODO M6: Implement relocateTo(String island)
-    //          Updates the island using setIsland()
+    //          Updates the island using setIsland
+    @Override
+    public void relocateTo(String island){
+        setIsland(island);
+    }
 }

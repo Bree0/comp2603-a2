@@ -26,6 +26,9 @@ public class Driver {
 
         s1.printRoster();
 
+        Marine marine = new Marine ("Leatherback Turtle", "Atlas", "Jamaica", 500.0, "Healthy", 1200.0, 8000);
+        System.out.println(marine.canRelocateTo("Jamaica"));
+        System.out.println(m4.canRelocateTo("Jamaica"));
 
         // TODO M9: Create two sanctuaries:
         //   "Caroni Bird Sanctuary", Trinidad, capacity 20
