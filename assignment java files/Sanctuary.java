@@ -146,7 +146,7 @@ public class Sanctuary {
         }
         Relocatable targetRelocatable = (Relocatable) targetAnimal;
         String originalIsland = targetAnimal.getIsland();
-        targetRelocatable.relocateTo(targetAnimal.getIsland());
+        targetRelocatable.relocateTo(target.getIsland());
         boolean addAnimalResult = target.addAnimal(targetAnimal);
         if(!addAnimalResult) {
             targetRelocatable.relocateTo(this.getIsland());
