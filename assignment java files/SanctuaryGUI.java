@@ -35,6 +35,7 @@ public class SanctuaryGUI extends JFrame {
         JPanel northPanel = new JPanel(new FlowLayout());
         northPanel.add(new JLabel("Search:"));
         nameField = new JTextField(14);
+        northPanel.add(nameField);
         northPanel.add(new JLabel("Type:"));
         typeCombo = new JComboBox<String>(new String[]{"All", "Bird", "Reptile", "Marine"});
         northPanel.add(typeCombo);
