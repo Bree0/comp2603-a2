@@ -118,20 +118,23 @@ public abstract class Animal {
     /**
      * Two animals are equal if they have the same animalId.
      *
-     * TODO M5: Implement equals
      */
     @Override
     public boolean equals(Object obj) {
-        // TODO M5: Implement equality by animalId
-        return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Animal animal = (Animal) obj;
+        return this.animalId == animal.animalId;
     }
 
     /**
-     * TODO M5: Implement hashCode based on animalId
      */
     @Override
     public int hashCode() {
-        // TODO M5: Return hash based on animalId
-        return 0;
+        return Integer.hashCode(this.animalId);
     }
 }

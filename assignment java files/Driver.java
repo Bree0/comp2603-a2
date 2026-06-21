@@ -17,8 +17,14 @@ public class Driver {
         System.out.println(m4.getSightingCount());
         System.out.println(m4.getLastSighting());
 
-        Bird m45 = new Bird("Scarlet Ibis", "Ruby", "Trinidad", 0.35, "Healthy", 60.0, true);
+        Bird m45 = new Bird("Cocrico", "Brown", "Tobago", 0.20, "Healthy", 50.0, true);
         System.out.println(m45.getLastSighting());
+
+        Sanctuary s1 = new Sanctuary("Caroni Bird Sanctuary", "Trinidad", 6);
+        s1.addAnimal(m4);
+        s1.addAnimal(m45);
+
+        s1.printRoster();
 
 
         // TODO M9: Create two sanctuaries:

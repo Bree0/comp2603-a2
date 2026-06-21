@@ -4,46 +4,72 @@ import java.util.ArrayList;
  * Manages a collection of animals at a single location.
  */
 public class Sanctuary {
-    // TODO M5: Declare private fields: name (String), island (String),
-    //          capacity (int), animals (ArrayList<Animal>)
 
-    /**
-     * TODO M5: Implement constructor
-     */
+    private String name;
+    private String island;
+    private int capacity;
+    private ArrayList<Animal> animals;
+
+
     public Sanctuary(String name, String island, int capacity) {
-        // TODO M5: Initialize all fields, create empty ArrayList
+        this.name = name;
+        this.island = island;
+        this.capacity = capacity;
+        this.animals = new ArrayList<Animal>();
     }
 
-    // TODO M5: Write getters for name, island, capacity, and animals
+    public String getName() {
+        return this.name;
+    }
+
+    public String getIsland() {
+        return this.island;
+    }
+
+    public int getCapacity() {
+        return this.capacity;
+    }
+
+    public ArrayList<Animal> getAnimals() {
+        return this.animals;
+    }
 
     /**
      * Adds an animal to this sanctuary.
      * Rejects null animals, rejects if at capacity, rejects if animal's island
      * does not match this sanctuary's island.
-     *
-     * TODO M5: Implement addAnimal
      */
     public boolean addAnimal(Animal a) {
-        // TODO M5: Validate and add
-        return false;
+        if(a == null) {
+            return false;
+        }
+        if(animals.size() >= capacity) {
+            return false;
+        }
+        if(!a.getIsland().equals(this.island)) {
+            return false;
+        }
+        animals.add(a);
+        return true;
     }
 
     /**
      * Removes and returns the animal with the given ID, or null if not found.
      *
-     * TODO M5: Implement removeAnimal
      */
     public Animal removeAnimal(int animalId) {
-        // TODO M5: Find by ID, remove, and return
+        for(Animal a : animals) {
+            if(a.getAnimalId() == animalId) {
+                animals.remove(a);
+                return a;
+            }
+        }
         return null;
     }
 
-    /**
-     * TODO M5: Implement getAnimalCount
-     */
+
     public int getAnimalCount() {
-        // TODO M5
-        return 0;
+        return animals.size();
     }
 
     /**
@@ -103,21 +129,20 @@ public class Sanctuary {
     /**
      * Prints each animal's toString, indented by 2 spaces.
      *
-     * TODO M5: Implement printRoster
      */
     public void printRoster() {
-        // TODO M5: Loop and print
+        for(Animal a : animals) {
+            System.out.println("  " + a.toString());
+        }
     }
 
     /**
      * Format: "Name (Island) [count/capacity animals]"
      * Example: "Caroni Bird Sanctuary (Trinidad) [12/50 animals]"
      *
-     * TODO M5: Implement toString
      */
     @Override
     public String toString() {
-        // TODO M5: Return formatted string
-        return "";
+        return String.format("%s (%s) [%d/%d animals]", name, island, animals.size(), capacity);
     }
 }
