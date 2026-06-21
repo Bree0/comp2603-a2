@@ -74,43 +74,58 @@ public class Sanctuary {
 
     /**
      * Returns a new ArrayList containing only animals of the given type.
-     *
-     * TODO M7: Implement getAnimalsOfType
      */
     public ArrayList<Animal> getAnimalsOfType(String type) {
-        // TODO M7: Filter by getType()
-        return new ArrayList<Animal>();
+        ArrayList <Animal> result = new ArrayList<>();
+        for(Animal a : animals) {
+            if(a.getType().equals(type)) {
+                result.add(a);
+            }
+        }
+        return result;
     }
 
     /**
      * Returns the total daily food cost for all animals, rounded to 2 decimal places.
-     *
-     * TODO M7: Implement getDailyFoodBudget
      */
     public double getDailyFoodBudget() {
-        // TODO M7: Sum getDailyFoodCostTTD() for all animals
-        return 0.0;
+        double foodBudget = 0.0;
+        for(Animal a : animals) {
+            foodBudget += a.getDailyFoodCostTTD();
+        }
+        return Math.round(foodBudget * 100.0) / 100.0;
     }
 
     /**
      * Returns all animals that implement the Relocatable interface.
      * Hint: use instanceof.
      *
-     * TODO M8: Implement getRelocatableAnimals
      */
     public ArrayList<Animal> getRelocatableAnimals() {
-        // TODO M8: Filter using instanceof Relocatable
-        return new ArrayList<Animal>();
+        ArrayList<Animal> result = new ArrayList<>();
+        for(Animal a : animals) {
+            if(a instanceof Relocatable) {
+                result.add(a);
+            }
+        }
+        return result;
     }
 
     /**
      * Returns the animal with the highest daily food cost, or null if empty.
      *
-     * TODO M7: Implement getMostExpensiveAnimal
      */
     public Animal getMostExpensiveAnimal() {
-        // TODO M7: Find max by getDailyFoodCostTTD()
-        return null;
+        if(animals.isEmpty()) {
+            return null;
+        }
+        Animal mostExpensiveAnimal = animals.get(0);
+        for(Animal a : animals) {
+            if(a.getDailyFoodCostTTD() > mostExpensiveAnimal.getDailyFoodCostTTD()) {
+                mostExpensiveAnimal = a;
+            }
+        }
+        return mostExpensiveAnimal;
     }
 
     /**
@@ -119,11 +134,26 @@ public class Sanctuary {
      * re-add the animal to this sanctuary and return false.
      * Otherwise, call relocateTo on the animal, then addAnimal on target.
      *
-     * TODO M8: Implement transferAnimal
      */
     public boolean transferAnimal(int animalId, Sanctuary target) {
-        // TODO M8: Remove animal, check Relocatable, relocate, add to target
-        return false;
+        Animal targetAnimal = removeAnimal(animalId);
+        if(targetAnimal == null) {
+            return false;
+        }
+        if(!(targetAnimal instanceof Relocatable)) {
+            animals.add(targetAnimal);
+            return false;
+        }
+        Relocatable targetRelocatable = (Relocatable) targetAnimal;
+        String originalIsland = targetAnimal.getIsland();
+        targetRelocatable.relocateTo(targetAnimal.getIsland());
+        boolean addAnimalResult = target.addAnimal(targetAnimal);
+        if(!addAnimalResult) {
+            targetRelocatable.relocateTo(this.getIsland());
+            animals.add(targetAnimal);
+            return false;
+        }
+        return true;
     }
 
     /**
